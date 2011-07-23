@@ -1,0 +1,5 @@
+name: mctoe
+main: metal.mctoe.Mctoe
+version: 0.1
+author: Metalmeerkat
+description: Let users play eachother in Tic Tac Toe
