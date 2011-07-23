@@ -2,4 +2,29 @@ name: mctoe
 main: metal.mctoe.Mctoe
 version: 0.1
 author: Metalmeerkat
-description: Let users play eachother in Tic Tac Toe
+description: Let users play each other in Tic Tac Toe
+commands:
+    ttt-ask:
+        description: Asks a player to join a game
+        usage: /ttt-ask <player name>
+    ttt-accept:
+        description: Accepts a request to join a game
+        usage: /ttt-accept
+    ttt-deny:
+        description: Denies a request to join a game
+        usage: /ttt-deny
+    ttt-pool-join:
+        description: Joins a list of players wanting to play a game
+        usage: /ttt-pool-join
+    ttt-pool-play:
+        description: Plays a random person in the pool list
+        usage: /ttt-pool-play
+    ttt-board:
+        description: Renders the game board
+        usage: /ttt-board
+    ttt-move:
+        description: Makes a move on the board
+        usage: /ttt-move <position>
+    ttt-quit:
+        description: Forfeits a game
+        usage: /ttt-quit
