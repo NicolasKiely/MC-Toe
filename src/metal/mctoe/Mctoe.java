@@ -102,19 +102,13 @@ public class Mctoe extends JavaPlugin {
 		
 		/* Check if executable */
 		if (error.equals("")){
-			String cmdError = "";
-			if (cmd.canExecute(senderPlayer, args, cmdError)){
+			String cmdError = cmd.canExecute(senderPlayer, args);
+			if (cmdError.equals("")){
 				/* Executable, so go run command */
 				cmd.execute(senderPlayer, args);
 			} else {
-				/* Check error from function */
-				if (cmdError.equals("")){
-					/* Unknown error */
-					error = "Error in attempting to execute command";
-				} else {
-					/* Pass error from command */
-					error = cmdError;
-				}
+				/* Pass error from command */
+				error = cmdError;
 			}
 		}
 		

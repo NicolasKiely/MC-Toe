@@ -27,7 +27,7 @@ public class Cmdask implements Command {
 	}
 
 	@Override
-	public boolean canExecute(Player sender, String[] args, String errorMsg) {
+	public String canExecute(Player sender, String[] args) {
 		/* Can only play if:
 		 * argument (other player) is another active player,
 		 * other player does not have any pending requests from anybody
@@ -42,31 +42,26 @@ public class Cmdask implements Command {
 		
 		/* Make sure player exists on server */
 		if (otherPlayer == null){
-			errorMsg = "Error, could not find player + '" +other+ "'";
-			return false;
+			return "Error, could not find player + '" +other+ "'";
 		}
 		
 		/* Check for pending requests targeting other player */
 		if (RequestList.get().playerHasPendingRequest(otherPlayer)){
-			errorMsg = "Error, player already has pending request";
-			return false;
+			return "Error, player already has pending request";
 		}
 		
 		/* Check to see if players are already in a game */
 		if (GameList.get().isPlaying(sender)){
-			errorMsg = "You are already playing a game, silly :P";
-			return false;
+			return "You are already playing a game, silly :P";
 		}
 		
 		/* Check to see if other player is already in a game */
 		if (GameList.get().isPlaying(otherPlayer)){
-			errorMsg = "Other player is playing a game now";
-			return false;
+			return "Other player is playing a game now";
 		}
 		
 		/* Nothing wrong found with sending request */
-		errorMsg = "";
-		return true;
+		return "";
 	}
 
 	

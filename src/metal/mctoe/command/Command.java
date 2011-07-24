@@ -27,10 +27,9 @@ public interface Command {
 	 * Returns whether or not the command can execute
 	 * @param sender Executor of command
 	 * @param args Arguments for command
-	 * @param errorMsg Error message if failure
-	 * @return True if executable, false otherwise
+	 * @return Empty if executable, error message otherwise
 	 */
-	boolean canExecute(Player sender, String[] args, String errorMsg);
+	String canExecute(Player sender, String[] args);
 	
 	/**
 	 * Executes command
