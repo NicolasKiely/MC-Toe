@@ -20,7 +20,7 @@ public interface Command {
 	int getArgs();
 	
 	/** Returns whether or not the command can execute */
-	boolean canExecute(Player sender, String[] args);
+	boolean canExecute(Player sender, String[] args, String errorMsg);
 	
 	/** Executes command */
 	void execute(Player sender, String[] args);

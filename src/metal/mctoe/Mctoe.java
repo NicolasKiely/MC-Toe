@@ -1,12 +1,17 @@
 package metal.mctoe;
 
+import metal.mctoe.game.GameList;
+import metal.mctoe.game.RequestList;
+
+import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import java.util.logging.Logger;
 
 /**
- * Manages Starting up and shutting down the plugin
+ * Manages Starting up and shutting down the plugin, pre-processing commands,
+ * and initializing server-wide data structures (eg game list, request list)
  * 
  * @author Nic
  *
@@ -22,6 +27,8 @@ public class Mctoe extends JavaPlugin {
 	/** A chopped down tree trunk */
 	private Logger log = Logger.getLogger("Minecraft");
 	
+	private static Server mainServer;
+	
 	
 	@Override
 	public void onDisable() {
@@ -30,8 +37,11 @@ public class Mctoe extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
-		// TODO Auto-generated method stub
 		conMsg("Booting up");
+		mainServer = this.getServer();
+		
+		RequestList.construct();
+		GameList.construct();
 	}
 	
 	
@@ -43,6 +53,7 @@ public class Mctoe extends JavaPlugin {
 	public void conMsg(String msg){
 		log.info("[" + pluginName + "] " + msg);
 	}
+	
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
@@ -63,6 +74,14 @@ public class Mctoe extends JavaPlugin {
 		
 		
 		return false;
+	}
+	
+	
+	/*
+	 * Returns the server associated with this plugin
+	 */
+	public static Server getMainServer(){
+		return mainServer;
 	}
 
 }
