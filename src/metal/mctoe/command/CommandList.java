@@ -1,5 +1,7 @@
 package metal.mctoe.command;
 
+import java.util.*;
+
 /**
  * Manages the list of different commands
  * 
@@ -7,17 +9,33 @@ package metal.mctoe.command;
  *
  */
 public class CommandList {
-	/** List of commands */
-	private Command[] commands;
+	/** Server command-list */
+	private static CommandList commandList;
 	
-	/** Number of commands */
-	private int numCmds = 8;
+	/** List of commands */
+	private List<Command> commands;
 
+	/** Initializes the server's list of commands */
+	public static void construct(){
+		commandList = new CommandList();
+	}
+	
 	
 	/**
-	 * Add each command to the list
+	 * Gets the server command list
+	 * @return list of commands
 	 */
-	public CommandList(){
-		commands = new Command[numCmds];
+	public static CommandList get(){
+		return commandList;
+	}
+	
+	
+	/**
+	 * Add all of the commands to the list
+	 */
+	private CommandList(){
+		commands = new ArrayList<Command>();
+		
+		commands.add(new Cmdask());
 	}
 }

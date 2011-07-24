@@ -2,7 +2,7 @@ package metal.mctoe.command;
 
 import metal.mctoe.Mctoe;
 
-import metal.mctoe.*;
+import metal.mctoe.game.GameList;
 import metal.mctoe.game.RequestList;
 
 import org.bukkit.Server;
@@ -48,21 +48,38 @@ public class Cmdask implements Command {
 		
 		/* Check for pending requests targeting other player */
 		if (RequestList.get().playerHasPendingRequest(otherPlayer)){
-			errorMsg = "Error, player has pending request";
+			errorMsg = "Error, player already has pending request";
 			return false;
 		}
 		
+		/* Check to see if players are already in a game */
+		if (GameList.get().isPlaying(sender)){
+			errorMsg = "You are already playing a game, silly :P";
+			return false;
+		}
 		
+		/* Check to see if other player is already in a game */
+		if (GameList.get().isPlaying(otherPlayer)){
+			errorMsg = "Other player is playing a game now";
+			return false;
+		}
 		
 		/* Nothing wrong found with sending request */
 		errorMsg = "";
 		return true;
 	}
 
+	
+	/**
+	 * Create a request for a game
+	 * @param sender Player responsible for request
+	 * @param args Name of target player
+	 */
 	@Override
 	public void execute(Player sender, String[] args) {
-		// TODO Auto-generated method stub
-
+		Player target = Mctoe.getMainServer().getPlayer(args[0]);
+		
+		RequestList.get().addRequest(sender, target);
 	}
 
 }

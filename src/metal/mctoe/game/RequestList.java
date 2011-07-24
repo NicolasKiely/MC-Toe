@@ -62,4 +62,14 @@ public class RequestList {
 		return false;
 	}
 	
+	
+	/**
+	 * Adds a new request to the list
+	 * @param sender Sender of request
+	 * @param target Target of request
+	 */
+	public void addRequest(Player sender, Player target){
+		Request newRequest = new Request(sender, target);
+		this.requests.add(newRequest);
+	}
 }
