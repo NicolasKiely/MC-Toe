@@ -3,8 +3,8 @@
 ttt-ask <name>: Asks user <name> to join a game. Note: will be denied if other player has a pending request.
 ttt-accept    : Accepts a request from player to start a new game
 ttt-deny      : Denies a request to play a game with a player
-ttt-pool-join : Joins the pool of users wanting to play a game
-ttt-pool-play : Plays a random player in the pool
+ttt-pool_join : Joins the pool of users wanting to play a game
+ttt-pool_play : Plays a random player in the pool
 
 ----- Playing a game -----
 ttt-board     : Displays current board moves

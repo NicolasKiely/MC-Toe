@@ -43,6 +43,7 @@ public class Mctoe extends JavaPlugin {
 		conMsg("Booting up");
 		mainServer = this.getServer();
 		
+		CommandList.construct();
 		RequestList.construct();
 		GameList.construct();
 	}
@@ -123,7 +124,7 @@ public class Mctoe extends JavaPlugin {
 			return true;
 		} else {
 			/* An error occurred */
-			senderPlayer.chat(error);
+			senderPlayer.sendMessage(error);
 			return false;
 		}
 	}
