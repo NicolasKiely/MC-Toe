@@ -74,7 +74,13 @@ public class Cmdask implements Command {
 	public void execute(Player sender, String[] args) {
 		Player target = Mctoe.getMainServer().getPlayer(args[0]);
 		
+		/* Send request */
 		RequestList.get().addRequest(sender, target);
+		
+		/* Notify both players */
+		Mctoe.msgPlayer(sender, "Sent request to " +target.getDisplayName());
+		Mctoe.msgPlayer(target, "Received request from "+ sender.getDisplayName());
+		
 	}
 
 }

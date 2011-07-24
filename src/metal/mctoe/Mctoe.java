@@ -118,17 +118,26 @@ public class Mctoe extends JavaPlugin {
 			return true;
 		} else {
 			/* An error occurred */
-			senderPlayer.sendMessage(error);
+			msgPlayer(senderPlayer, error);
 			return false;
 		}
 	}
 	
 	
-	/*
+	/**
 	 * Returns the server associated with this plugin
 	 */
 	public static Server getMainServer(){
 		return mainServer;
+	}
+	
+	/**
+	 * Sends plugin message to player
+	 * @param player Receiver of message
+	 * @param message The message
+	 */
+	public static void msgPlayer(Player player, String message){
+		player.sendMessage("[" +pluginName+ "] " +message);
 	}
 
 }
