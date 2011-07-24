@@ -34,8 +34,28 @@ public class CommandList {
 	 * Add all of the commands to the list
 	 */
 	private CommandList(){
-		commands = new ArrayList<Command>();
+		this.commands = new ArrayList<Command>();
 		
-		commands.add(new Cmdask());
+		this.commands.add(new Cmdask());
+	}
+	
+	
+	/**
+	 * Looks up a command
+	 * @param cmdName name of command
+	 * @return Command if it exists, null if none found
+	 */
+	public Command getCommand(String cmdName){
+		for (int i = 0; i < this.commands.size(); i++){
+			/* Look at current indexed command */
+			Command thisCmd = this.commands.get(i);
+			if (thisCmd.getName().equalsIgnoreCase(cmdName)){
+				/* Found command */
+				return thisCmd;
+			}
+		}
+		
+		/* Found no command */
+		return null;
 	}
 }

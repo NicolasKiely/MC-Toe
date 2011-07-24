@@ -1,5 +1,6 @@
 package metal.mctoe;
 
+import metal.mctoe.command.CommandList;
 import metal.mctoe.game.GameList;
 import metal.mctoe.game.RequestList;
 
@@ -7,6 +8,8 @@ import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
 import java.util.logging.Logger;
 
 /**
@@ -57,9 +60,10 @@ public class Mctoe extends JavaPlugin {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
-		//this.getServer().broadcastMessage(label);
+		String error = "";
 		String prefix;
 		String suffix;
+		Player senderPlayer;
 		
 		/* Get prefix, should be ttt */
 		prefix = command.getLabel().substring(0, 3);
@@ -67,13 +71,61 @@ public class Mctoe extends JavaPlugin {
 		/* Get suffix, should be everything after - */
 		suffix = command.getLabel().substring(4);
 		
-		/* Check to make sure plugin prefix name is called correctly */
-		if (!prefix.equalsIgnoreCase(this.pluginPrefix)){
+		/* Check to make sure plugin name space is used */
+		if (!prefix.equalsIgnoreCase(pluginPrefix)){
 			return false;
 		}
 		
 		
-		return false;
+		/* Make sure it's a player we're dealing with here */
+		if (sender instanceof Player) {
+			senderPlayer = (Player) sender;
+		} else {
+			sender.sendMessage("Error, only players can play");
+			return false;
+		}
+		
+		/* Find a matching command */
+		metal.mctoe.command.Command cmd = CommandList.get().getCommand(suffix);
+		if (cmd == null) {
+			error = "Error: command not found";
+		}
+		
+		
+		/* Check parameters */
+		if (error.equals("")){
+			if (cmd.getArgs() != args.length){
+				error = "Invalid number of arguments";
+			}
+		}
+		
+		/* Check if executable */
+		if (error.equals("")){
+			String cmdError = "";
+			if (cmd.canExecute(senderPlayer, args, cmdError)){
+				/* Executable, so go run command */
+				cmd.execute(senderPlayer, args);
+			} else {
+				/* Check error from function */
+				if (cmdError.equals("")){
+					/* Unknown error */
+					error = "Error in attempting to execute command";
+				} else {
+					/* Pass error from command */
+					error = cmdError;
+				}
+			}
+		}
+		
+		
+		if (error.equals("")){
+			/* Success */
+			return true;
+		} else {
+			/* An error occurred */
+			senderPlayer.chat(error);
+			return false;
+		}
 	}
 	
 	

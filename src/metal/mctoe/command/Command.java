@@ -4,6 +4,8 @@ import org.bukkit.entity.Player;
 
 /**
  * Represents a command
+ * In hindsight, it probably was an absurdly stupid idea to choose the same name
+ * as bukkit's Command class.
  * 
  * @author Nic
  *
