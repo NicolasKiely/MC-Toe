@@ -13,10 +13,10 @@ commands:
     ttt-deny:
         description: Denies a request to join a game
         usage: /ttt-deny
-    ttt-pool-join:
+    ttt-pool_join:
         description: Joins a list of players wanting to play a game
         usage: /ttt-pool-join
-    ttt-pool-play:
+    ttt-pool_play:
         description: Plays a random person in the pool list
         usage: /ttt-pool-play
     ttt-board:

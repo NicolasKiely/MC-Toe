@@ -14,10 +14,10 @@ import java.util.logging.Logger;
 public class Mctoe extends JavaPlugin {
 
 	/** Name of this plugin that shows up on log */
-	private String pluginName = "mctoe";
+	private static String pluginName = "mctoe";
 	
 	/** Prefix name for all plugin commands */
-	private String pluginPrefix = "ttt";
+	private static String pluginPrefix = "ttt";
 	
 	/** A chopped down tree trunk */
 	private Logger log = Logger.getLogger("Minecraft");
