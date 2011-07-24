@@ -45,21 +45,21 @@ public class RequestList {
 	
 	
 	/**
-	 * Checks to see if a player is a target of a request
+	 * Returns the request for a target, if it exists
 	 * @param player Name of target player
-	 * @return True if the target player has a pending request, false otherwise
+	 * @return Request object if the target player has a pending request, null otherwise
 	 */
-	public boolean playerHasPendingRequest(Player player){
+	public Request getPendingRequest(Player target){
 		
 		for (int i = 0; i < this.requests.size(); i++){
-			if (this.requests.get(i).getTarget().getUniqueId() == player.getUniqueId()){
+			if (this.requests.get(i).getTarget().getUniqueId() == target.getUniqueId()){
 				/* Found request for target */
-				return true;
+				return this.requests.get(i);
 			}
 		}
 		
 		/* No request found */
-		return false;
+		return null;
 	}
 	
 	
@@ -71,5 +71,22 @@ public class RequestList {
 	public void addRequest(Player sender, Player target){
 		Request newRequest = new Request(sender, target);
 		this.requests.add(newRequest);
+	}
+	
+	
+	/**
+	 * Removes a request for a target
+	 * @param target Player to remove from requests
+	 */
+	public void removeRequest(Player target){
+		for (int i = 0; i < this.requests.size(); i++){
+			/* Get current request */
+			Request thisRequest = this.requests.get(i);
+			
+			if (thisRequest.getTarget().getUniqueId() == target.getUniqueId()){
+				/* Found request, remove it */
+				this.requests.remove(i);
+			}
+		}
 	}
 }

@@ -1,1 +1,2 @@
 implement commands
+bug: java exceptions thrown when a player exits

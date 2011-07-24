@@ -46,7 +46,7 @@ public class Cmdask implements Command {
 		}
 		
 		/* Check for pending requests targeting other player */
-		if (RequestList.get().playerHasPendingRequest(otherPlayer)){
+		if (RequestList.get().getPendingRequest(otherPlayer) != null){
 			return "Error, player already has pending request";
 		}
 		

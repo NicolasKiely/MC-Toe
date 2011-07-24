@@ -37,6 +37,7 @@ public class CommandList {
 		this.commands = new ArrayList<Command>();
 		
 		this.commands.add(new Cmdask());
+		this.commands.add(new Cmddeny());
 	}
 	
 	
